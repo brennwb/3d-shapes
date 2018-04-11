@@ -1,0 +1,60 @@
+<html>
+<head>
+<script>
+    function handleChange(value) {
+        document.getElementById("cube").style = "display: none";
+        document.getElementById("cylinder").style = "display: none";
+        document.getElementById("pyramid").style = "display: none";
+        switch (value) {
+            case "cube": document.getElementById("cube").style = "display: block"; break;
+            case "cylinder": document.getElementById("cylinder").style = "display: block"; break;
+            case "pyramid": document.getElementById("pyramid").style = "display: block"; break;
+            default: break;
+        }
+    }
+
+    var degrees = 180;
+
+    function handleMouseMove() {
+        if (event.buttons) {
+            console.log(event);
+            degrees = degrees + 1;
+            var transform = "rotate(" + degrees.toString() + ",50,50)";
+            document.getElementById("triangle").setAttribute('transform', transform);
+        }
+    }
+    
+    function handleMouseDown() {
+        console.log(event);
+    }
+    
+</script>
+</head>
+<body>
+    <select onChange="handleChange(this.value)">
+        <option value="">Select a Shape</option>
+        <option value="cube">cube</option>
+        <option value="cylinder">cylinder</option>
+        <option value="pyramid">pyramid</option>                
+    </select>
+    <div id="cube" style="display: none">
+        Cube
+    </div>
+    <div id="cylinder" style="display: none">
+        Cylinder
+    </div>
+    <div id="pyramid" style="display: none">
+        <svg width="100%" height="550" viewbox="0 0 100 100">
+            <path
+                id="triangle"
+                d="M 15,20 L 85,20 L 50,95 Z"
+                stroke="black"
+                fill="#8B0000"
+                transform="rotate(180,50,50)"
+                onmousemove="handleMouseMove()"
+                onmousedown="handleMouseDown()">
+            </path>
+        </svg>
+    </div>
+</body>
+</html>
